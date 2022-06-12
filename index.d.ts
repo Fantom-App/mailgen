@@ -6,84 +6,87 @@ import Content = Mailgen.Content;
  * Created by kiettv on 7/24/16.
  */
 declare class Mailgen {
-    constructor(opts: Option);
+  constructor(opts: Option);
 
-    cacheThemes(): void;
+  cacheThemes(): void;
 
-    generate(params: Content): any;
+  generate(params: Content): any;
 
-    generatePlaintext(params: Content): any;
+  generatePlaintext(params: Content): any;
 
-    parseParams(params: any): any;
+  parseParams(params: any): any;
 }
 
 declare namespace Mailgen {
-    interface Option {
-        theme: string | CustomTheme;
-        product: Product;
-        /**
-         * To change the default text direction
-         * @default ltr
-         */
-        textDirection?: 'ltr' | 'rtl' | string;
-    }
+  interface Option {
+    theme: string | CustomTheme;
+    product: Product;
+    /**
+     * To change the default text direction
+     * @default ltr
+     */
+    textDirection?: "ltr" | "rtl" | string;
+  }
 
-    interface CustomTheme {
-        path: string;
-        plaintextPath?: string;
-    }
+  interface CustomTheme {
+    path?: string;
+    plaintextPath?: string;
 
-    interface Product {
-        name: string;
-        link: string;
-        logo?: string;
-        logoHeight?: string;
-        copyright?: string;
-    }
+    htmlString?: string;
+    plaintextString?: string;
+  }
 
-    interface Content {
-        body: ContentBody;
-    }
+  interface Product {
+    name: string;
+    link: string;
+    logo?: string;
+    logoHeight?: string;
+    copyright?: string;
+  }
 
-    interface ContentBody {
-        name?: string;
-        greeting?: string | boolean;
-        signature?: string | boolean;
-        title?: string;
-        intro?: string | string[];
-        action?: Action | Action[];
-        table?: Table | Table[];
-        dictionary?: any;
-        goToAction?: GoToAction;
-        outro?: string | string[];
-    }
+  interface Content {
+    body: ContentBody;
+  }
 
-    interface Table {
-        data: any[];
-        columns?: ColumnOptions;
-    }
+  interface ContentBody {
+    name?: string;
+    greeting?: string | boolean;
+    signature?: string | boolean;
+    title?: string;
+    intro?: string | string[];
+    action?: Action | Action[];
+    table?: Table | Table[];
+    dictionary?: any;
+    goToAction?: GoToAction;
+    outro?: string | string[];
+  }
 
-    interface ColumnOptions {
-        customWidth: any;
-        customAlignment: any;
-    }
+  interface Table {
+    data: any[];
+    columns?: ColumnOptions;
+  }
 
-    interface GoToAction {
-        text: string;
-        link: string;
-        description: string;
-    }
+  interface ColumnOptions {
+    customWidth: any;
+    customAlignment: any;
+  }
 
-    interface Action {
-        instructions: string;
-        button: Button;
-    }
+  interface GoToAction {
+    text: string;
+    link: string;
+    description: string;
+  }
 
-    interface Button {
-        color?: string;
-        text: string;
-        link: string;
-    }
+  interface Action {
+    instructions: string;
+    button: Button;
+  }
+
+  interface Button {
+    color?: string;
+    text: string;
+    link: string;
+  }
 }
 
 export = Mailgen;
